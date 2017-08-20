@@ -2,8 +2,6 @@
 Signs up for Miadidas ultraboost codes
 ===
 
-* Install python2  here: https://www.python.org/
-
 - **U need to install the following modules:**
 
 * Requests
