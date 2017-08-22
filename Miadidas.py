@@ -1,8 +1,8 @@
 import json, requests, time, random, re, thread, urllib3	
+from time import sleep
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 list1 = ["Beck","Glenn","Becker","Carl","Beckett","Samuel","Beddoes","Mick","Beecher","HenryWard","Beethoven","Ludwigvan","Begin","Menachem","Bell","Alexander","Graham","Belloc","Hilaire","Bellow","Saul","Benchley","Robert","Benenson","Peter","BenGurion","David","Benjamin","Walter","Benn","Tony","Bennington","Chester","Benson","Leana","Bent","Silas","Bentsen","Lloyd","Berger","Ric","Bergman","Ingmar","Berio","Luciano","Berle","Milton","Berlin","Irving","Berne","Eric","Bernhard","Sandra","Berra","Yogi","Berry","Halle","Berry","Wendell","Bethea","Erin","Bevan","Aneurin","Bevel","Ken","Biden","Joseph","Bierce","Am","Brose","Biko","Steve","Billings","Josh","Biondo","Frank","Birrell","Augustine","Black","Elk","Blair","Ro","Bert","Blair","Tony","Blake","William","Blakey","Art","Blalock","Jolene","Blanc","Mel","Blanc","Raymond","Blanchet","Cate","Blix","Hans","Blood","Rebecca"]
-
 
 url = 'https://brand.campaign.adidas.com/api/scv/subscription/newsletter/create'
 
@@ -58,11 +58,12 @@ def miadidas(emails):
 				"consents"          : {"consent": [{"consentType": "AMF", "consentValue": "N", "consentVersion": "ADIUS_VER_1"}]} # Do Not change
 			}
 		payload = json.dumps(payload)
+		time.sleep(5)
 		resp = requests.post(url, verify=False, data=payload, headers=headers)
 		if any(re.findall(r'true', str(resp.text), re.IGNORECASE)):
 		            print(time.strftime("[%H:%M:%S]") + " - Succesfully entered" + " - " + email)
 		else:
-		           print(time.strftime("[%H:%M:%S]") + " - Could not enter" + " - " + resp.text)
+		           print(time.strftime("[%H:%M:%S]") + " - Could not enter" )
 try:
    thread.start_new_thread( miadidas, ("youremail@gmail.com",) ) # Change to your email
    thread.start_new_thread( miadidas, ("youremail@gmail.com",) ) # add another mail if u want, delete this line if not
